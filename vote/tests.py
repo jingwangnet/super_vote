@@ -17,7 +17,8 @@ class HomePageTest(TestCase):
         html = response.content.decode('utf-8')
         self.assertTrue(html.startswith('<html>'))
         self.assertIn('<title>Voting For Your Question</title>', html)
-        self.assertTrue(html.endswith('</html>'))
+        #self.fail(repr(html))
+        self.assertTrue(html.strip().endswith('</html>'))
 
 
 
