@@ -20,4 +20,5 @@ from vote import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name="index"),
+    path('question/the-only-url/', views.view_question, name="view_question"),
 ]

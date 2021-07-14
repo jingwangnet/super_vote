@@ -21,7 +21,7 @@ class HomePageTest(TestCase):
     def test_redirect_after_save_new_question_post_request(self):
         response = self.client.post('/', data={'new-question': 'A new question'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
+        self.assertEqual(response['location'], '/question/the-only-url/')
 
     def test_display_question(self):
         Question.objects.create(text='A new question')
@@ -48,6 +48,11 @@ class HomePageTest(TestCase):
         self.assertContains(response, 'The second vote')
 
 
+class ViewQuestionTest(TestCase):
+    def test_display_question(self):
+        Question.objects.create(text='A new question')
+        response = self.client.get('/question/the-only-url/')
+        self.assertContains(response, 'A new question')
 
 class QuestionModelTest(TestCase):
 

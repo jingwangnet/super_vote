@@ -8,7 +8,7 @@
     <input id="new-question" name="new-question" placeholder="Submit a question to vote!">
     {% csrf_token %}
   </form>
-  <form method="post">
+  <form method="post" action="/">
     <input id="new-vote" name="new-vote" placeholder="Submit a vote for the question!">
     {% csrf_token %}
   </form>

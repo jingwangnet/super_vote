@@ -7,7 +7,7 @@ def home_page(request):
     if request.method == 'POST':
         if request.POST.get('new-question'):
             Question.objects.create(text=request.POST['new-question'])
-            return redirect('/')
+            return redirect('/question/the-only-url/')
         if request.POST.get('new-vote'):
             Vote.objects.create(text=request.POST['new-vote'])
             return redirect('/')
@@ -17,3 +17,10 @@ def home_page(request):
         'votes': Vote.objects.all() 
     }
     return render(request, 'vote/index.html', context)
+
+def view_question(request):
+    context = {
+        'new_question': Question.objects.first().text
+    }
+    return render(request, 'vote/index.html', context)
+
