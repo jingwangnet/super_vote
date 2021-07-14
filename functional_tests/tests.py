@@ -86,9 +86,9 @@ class NewVisitorTest(LiveServerTestCase):
         )
         # Joe submit a vote agian
         inputbox.send_keys(FIRST_VOTE)
-        inputbox.send_keys(keys.ENTER)
+        inputbox.send_keys(Keys.ENTER)
         # Joe see the question and vote
-        self.wait_to_check_text_in_the_table('1. '+FIRST_VOTEE, 'votes-table')
+        self.wait_to_check_text_in_the_table('1. '+FIRST_VOTE, 'votes-table')
         self.wait_to_check_text_in_the_page(FIRST_QUESTION)
         # He feels good and leave
         self.browser.quit()
