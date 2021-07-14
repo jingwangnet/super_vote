@@ -4,7 +4,7 @@
 </head>
 <body>
   <h1>Voting For Your Question<h1>
-  <form method="post">
+  <form method="post" action="/question/new">
     <input id="new-question" name="new-question" placeholder="Submit a question to vote!">
     {% csrf_token %}
   </form>

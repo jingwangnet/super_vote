@@ -11,17 +11,6 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'vote/index.html')
 
-    def test_home_page_can_save_new_question_post_request(self):
-        response = self.client.post('/', data={'new-question': 'A new question'})
-
-        self.assertEqual(1, Question.objects.count())
-        question = Question.objects.first()
-        self.assertEqual(question.text, 'A new question')
-
-    def test_redirect_after_save_new_question_post_request(self):
-        response = self.client.post('/', data={'new-question': 'A new question'})
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/question/the-only-url/')
 
     def test_display_question(self):
         Question.objects.create(text='A new question')
@@ -47,6 +36,19 @@ class HomePageTest(TestCase):
         self.assertContains(response, 'The first vote')
         self.assertContains(response, 'The second vote')
 
+
+class NewQuestionTest(TestCase):
+    def test_can_save_new_question_post_request(self):
+        response = self.client.post('/question/new', data={'new-question': 'A new question'})
+
+        self.assertEqual(1, Question.objects.count())
+        question = Question.objects.first()
+        self.assertEqual(question.text, 'A new question')
+
+    def test_redirect_after_save_new_question_post_request(self):
+        response = self.client.post('/question/new', data={'new-question': 'A new question'})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['location'], '/question/the-only-url/')
 
 class ViewQuestionTest(TestCase):
     def test_display_question(self):

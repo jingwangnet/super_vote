@@ -18,6 +18,10 @@ def home_page(request):
     }
     return render(request, 'vote/index.html', context)
 
+def new_question(request):
+    Question.objects.create(text=request.POST['new-question'])
+    return redirect('/question/the-only-url/')
+
 def view_question(request):
     context = {
         'new_question': Question.objects.first().text
