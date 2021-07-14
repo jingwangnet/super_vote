@@ -27,7 +27,7 @@ class HomePageTest(TestCase):
     def test_redirect_after_save_new_vote_post_request(self):
         response = self.client.post('/', data={'new-vote': 'A new vote'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
+        self.assertEqual(response['location'], '/question/the-only-url/result/')
 
     def test_display_all_votes(self):
         first_vote = Vote.objects.create(text='The first vote')
@@ -60,6 +60,15 @@ class ViewQuestionTest(TestCase):
         Question.objects.create(text='A new question')
         response = self.client.get('/question/the-only-url/')
         self.assertTemplateUsed(response, 'vote/question.html')
+
+class ViewVoteTest(TestCase):
+    def test_display_all_votes(self):
+        Question.objects.create(text='A new question')
+        Vote.objects.create(text='A new vote')
+        Vote.objects.create(text='A new vote agian')
+        response = self.client.get('/question/the-only-url/result/')
+        self.assertContains(response, 'A new vote')
+        self.assertContains(response, 'A new vote agian')
 
 class QuestionModelTest(TestCase):
 
