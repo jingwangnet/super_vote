@@ -70,6 +70,12 @@ class ViewVoteTest(TestCase):
         self.assertContains(response, 'A new vote')
         self.assertContains(response, 'A new vote agian')
 
+    def test_use_template(self):
+        Question.objects.create(text='A new question')
+        Vote.objects.create(text='A new vote')
+        response = self.client.get('/question/the-only-url/result/')
+        self.assertTemplateUsed(response, 'vote/vote.html')
+
 class QuestionModelTest(TestCase):
 
     

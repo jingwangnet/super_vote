@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title>Voting For Your Question</title>
+</head>
+<body>
+  <h1>{{ new_question }}<h1>
+  <table id="votes-table">
+      {% for vote in votes %}
+      <tr><td>{{ forloop.counter }}. {{ vote.text }}</td></tr>
+      {% endfor %}
+  </table>
+</body>
+</html>

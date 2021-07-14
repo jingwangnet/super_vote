@@ -34,5 +34,5 @@ def view_vote(request):
         'new_question': Question.objects.first().text,
         'votes': votes
     }
-    return render(request, 'vote/index.html', context)
+    return render(request, 'vote/vote.html', context)
 

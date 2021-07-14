@@ -157,7 +157,7 @@ class NewVisitorTest(LiveServerTestCase):
         # the question match pattern '/question/.+/result/'
         self.assertRegex(VOTE_OF_FIRST_QUESTION_URL, '/question/.+/result/')
         # there is no new-question inptbox
-        # there is no question-table inptbox
+        # there is no questions-table inptbox
         # there is no new-vote inptbox
         self.check_element_not_in_the_page(By.ID, 'new-question')
         self.check_element_not_in_the_page(By.ID, 'questions-table')
@@ -168,7 +168,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.setUp()
         self.browser.get(self.live_server_url)
         # Kim saw the question of Joe
-        self.wait_to_check_text_in_the_table('1. '+FIRST_QUESTION, 'question-table')
+        self.wait_to_check_text_in_the_table('1. '+FIRST_QUESTION, 'questions-table')
         # expect do not have vote of joe
         self.wait_to_check_text_in_the_page(FIRST_VOTE)
         # there is no new-vote inptbox
@@ -195,7 +195,7 @@ class NewVisitorTest(LiveServerTestCase):
         )
         # Kim return to the home_page, he see the quetion of self int the table
         self.browser.back()
-        self.wait_to_check_text_in_the_table('2. '+SECOND_QUESTION, 'question-table')
+        self.wait_to_check_text_in_the_table('2. '+SECOND_QUESTION, 'questions-table')
         # kim return the url of qeustion
         SECOND_QUESTION_LINK = self.browser.find_element(By.PARTIAL_LINK_TEXT, SECOND_QUESTION)
         SECOND_QUESTION_LINK.click()
