@@ -4,7 +4,7 @@
 </head>
 <body>
   <h1>{{ new_question }}<h1>
-  <form method="post" action="/">
+  <form method="post" action="/question/the-only-url/new">
     <input id="new-vote" name="new-vote" placeholder="Submit a vote for the question!">
     {% csrf_token %}
   </form>

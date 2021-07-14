@@ -28,6 +28,10 @@ def view_question(request):
     }
     return render(request, 'vote/question.html', context)
 
+def new_vote(request):
+    Vote.objects.create(text=request.POST['new-vote'])
+    return redirect('/question/the-only-url/result/')
+
 def view_vote(request):
     votes = Vote.objects.all()
     context = {
