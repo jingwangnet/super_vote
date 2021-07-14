@@ -22,5 +22,5 @@ def view_question(request):
     context = {
         'new_question': Question.objects.first().text
     }
-    return render(request, 'vote/index.html', context)
+    return render(request, 'vote/question.html', context)
 

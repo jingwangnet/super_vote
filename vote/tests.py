@@ -54,6 +54,11 @@ class ViewQuestionTest(TestCase):
         response = self.client.get('/question/the-only-url/')
         self.assertContains(response, 'A new question')
 
+    def test_use_template(self):
+        Question.objects.create(text='A new question')
+        response = self.client.get('/question/the-only-url/')
+        self.assertTemplateUsed(response, 'vote/question.html')
+
 class QuestionModelTest(TestCase):
 
     

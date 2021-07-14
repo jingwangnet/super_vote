@@ -155,7 +155,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Joe get url of vote 
         VOTE_OF_FIRST_QUESTION_URL = self.browser.current_url
         # the question match pattern '/question/.+/result/'
-        self.assertRegex(VOTE_OF_FIRST_QUESTION, '/question/.+/result/')
+        self.assertRegex(VOTE_OF_FIRST_QUESTION_URL, '/question/.+/result/')
         # there is no new-question inptbox
         # there is no question-table inptbox
         # there is no new-vote inptbox
