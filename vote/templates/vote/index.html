@@ -16,7 +16,9 @@
       <tr><td><a href="/">1. {{ new_question }}<a/></td></tr>
   </table>
   <table id="votes-table">
-      <tr><td>1. {{ new_vote }}</td></tr>
+      {% for vote in votes %}
+      <tr><td>{{ forloop.counter }}. {{ vote.text }}</td></tr>
+      {% endfor %}
   </table>
 </body>
 </html>
