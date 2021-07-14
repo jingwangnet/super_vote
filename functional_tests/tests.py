@@ -11,7 +11,7 @@ from selenium import webdriver
 import time
 
 MAX_TIME = 3
-QUESTION_PLACEHOLDER = 'Submit a question to voting!'
+QUESTION_PLACEHOLDER = 'Submit a question to vote!'
 VOTE_PLACEHOLDER = 'Submit a vote for the question!'
 FIRST_QUESTION = 'Where is the restarant for dinner?'
 FIRST_VOTE = 'McDonald\'s is the best choice.'
@@ -39,7 +39,7 @@ class NewVisitorTest(LiveServerTestCase):
                     [row.text for row in rows]
                 )
                 return
-            except (AssertionError, WebdriverException) as e:
+            except (AssertionError, WebDriverException) as e:
                 if time.time() - START_TIME > MAX_TIME:
                     raise e
                 time.sleep(0.5)
@@ -51,7 +51,7 @@ class NewVisitorTest(LiveServerTestCase):
                 html = self.browser.find_element(By.TAG_NAME, 'body').text
                 self.assertIn(text, html)
                 return
-            except (AssertionError, WebdriverException) as e:
+            except (AssertionError, WebDriverException) as e:
                 if time.time() - START_TIME > MAX_TIME:
                     raise e
                 time.sleep(0.5)
@@ -74,7 +74,7 @@ class NewVisitorTest(LiveServerTestCase):
         )
         # Joe submit a question
         inputbox.send_keys(FIRST_QUESTION)
-        inputbox.send_keys(keys.ENTER)
+        inputbox.send_keys(Keys.ENTER)
         # Joe see the question, 
         self.wait_to_check_text_in_the_page(FIRST_QUESTION)
         # and he see a new inputbox to invite him to submit a vote
