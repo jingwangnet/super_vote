@@ -104,13 +104,13 @@ class NewVisitorTest(LiveServerTestCase):
         self.wait_to_check_text_in_the_page(FIRST_QUESTION)
         inputbox = self.browser.find_element(By.ID, 'new-vote')
         # Kim vote agian 
-        inputbox.send_keys(FIRST_VOTE)
-        inputbox.send_keys(keys.ENTER)
+        inputbox.send_keys(SECOND_VOTE)
+        inputbox.send_keys(Keys.ENTER)
         # Kim see the question and vote
-        self.wait_to_check_text_in_the_table('2. '+SECOND_VOTEE, 'votes-table')
+        self.wait_to_check_text_in_the_table('2. '+SECOND_VOTE, 'votes-table')
         self.wait_to_check_text_in_the_page(FIRST_QUESTION)
         # kim see the vote of joe
-        self.wait_to_check_text_in_the_table('1. '+FIRST_VOTEE, 'votes-table')
+        self.wait_to_check_text_in_the_table('1. '+FIRST_VOTE, 'votes-table')
         
 
 
