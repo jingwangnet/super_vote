@@ -8,17 +8,8 @@
     <input id="new-question" name="new-question" placeholder="Submit a question to vote!">
     {% csrf_token %}
   </form>
-  <form method="post" action="/">
-    <input id="new-vote" name="new-vote" placeholder="Submit a vote for the question!">
-    {% csrf_token %}
-  </form>
   <table id="questions-table">
-      <tr><td><a href="/">1. {{ new_question }}<a/></td></tr>
-  </table>
-  <table id="votes-table">
-      {% for vote in votes %}
-      <tr><td>{{ forloop.counter }}. {{ vote.text }}</td></tr>
-      {% endfor %}
+      <tr><td><a href="/question/the-only-url/">1. {{ new_question }}<a/></td></tr>
   </table>
 </body>
 </html>

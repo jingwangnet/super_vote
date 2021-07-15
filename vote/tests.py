@@ -11,20 +11,10 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'vote/index.html')
 
-
     def test_display_question(self):
         Question.objects.create(text='A new question')
         response = self.client.get('/')
         self.assertContains(response, 'A new question')
-
-
-    def test_display_all_votes(self):
-        first_vote = Vote.objects.create(text='The first vote')
-        second_vote = Vote.objects.create(text='The second vote')
-        response = self.client.get('/')
-        self.assertContains(response, 'The first vote')
-        self.assertContains(response, 'The second vote')
-
 
 class NewQuestionTest(TestCase):
     def test_can_save_new_question_post_request(self):

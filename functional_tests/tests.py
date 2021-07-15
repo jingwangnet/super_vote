@@ -169,8 +169,11 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         # Kim saw the question of Joe
         self.wait_to_check_text_in_the_table('1. '+FIRST_QUESTION, 'questions-table')
+        FIRST_QUESTION_LINK = self.browser.find_element(
+            By.PARTIAL_LINK_TEXT, 
+            FIRST_QUESTION).get_attribute('href')
+        self.assertRegex(FIRST_QUESTION_LINK, '/question/.+/')
         # expect do not have vote of joe
-        self.wait_to_check_text_in_the_page(FIRST_VOTE)
         # there is no new-vote inptbox
         # there is no votes-table
         self.check_element_not_in_the_page(By.ID, 'new-vote')
