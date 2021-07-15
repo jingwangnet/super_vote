@@ -9,7 +9,9 @@
     {% csrf_token %}
   </form>
   <table id="questions-table">
-      <tr><td><a href="/question/the-only-url/">1. {{ new_question }}<a/></td></tr>
+      {% for question in questions %}
+      <tr><td><a href="{% url 'view_question' question.pk %}">{{ forloop.counter }}. {{ question.text }}</a></td></tr>
+      {% endfor %}
   </table>
 </body>
 </html>

@@ -197,7 +197,7 @@ class NewVisitorTest(LiveServerTestCase):
             SECOND_QUESTION_URL
         )
         # Kim return to the home_page, he see the quetion of self int the table
-        self.browser.back()
+        self.browser.get(self.live_server_url)
         self.wait_to_check_text_in_the_table('2. '+SECOND_QUESTION, 'questions-table')
         # kim return the url of qeustion
         SECOND_QUESTION_LINK = self.browser.find_element(By.PARTIAL_LINK_TEXT, SECOND_QUESTION)

@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name="index"),
     path('question/new', views.new_question, name="new_question"),
-    path('question/the-only-url/', views.view_question, name="view_question"),
-    path('question/the-only-url/new', views.new_vote, name="new_vote"),
-    path('question/the-only-url/result/', views.view_vote, name="view_vote"),
+    path('question/<int:pk>/', views.view_question, name="view_question"),
+    path('question/<int:pk>/new', views.new_vote, name="new_vote"),
+    path('question/<int:pk>/result/', views.view_vote, name="view_vote"),
 ]
