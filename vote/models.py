@@ -9,4 +9,8 @@ class Question(models.Model):
         return reverse('view_question', kwargs={'pk':self.pk})
 
 class Vote(models.Model):
+    question = models.ForeignKey(
+        Question, 
+        on_delete=models.CASCADE
+    )
     text = models.TextField(default='')

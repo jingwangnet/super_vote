@@ -3,9 +3,9 @@
   <title>Voting For Your Question</title>
 </head>
 <body>
-  <h1>{{ new_question }}<h1>
+  <h1>{{ question.text }}<h1>
   <table id="votes-table">
-      {% for vote in votes %}
+      {% for vote in question.vote_set.all %}
       <tr><td>{{ forloop.counter }}. {{ vote.text }}</td></tr>
       {% endfor %}
   </table>

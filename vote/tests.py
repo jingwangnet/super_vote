@@ -62,15 +62,15 @@ class NewVoteTest(TestCase):
 class ViewVoteTest(TestCase):
     def test_display_all_votes(self):
         question=Question.objects.create(text='A new question')
-        Vote.objects.create(text='A new vote')
-        Vote.objects.create(text='A new vote agian')
+        Vote.objects.create(text='A new vote', question=question)
+        Vote.objects.create(text='A new vote agian', question=question)
         response = self.client.get(f'/question/{question.pk}/result/')
         self.assertContains(response, 'A new vote')
         self.assertContains(response, 'A new vote agian')
 
     def test_use_template(self):
         question=Question.objects.create(text='A new question')
-        Vote.objects.create(text='A new vote')
+        Vote.objects.create(text='A new vote', question=question)
         response = self.client.get(f'/question/{question.pk}/result/')
         self.assertTemplateUsed(response, 'vote/vote.html')
 
@@ -95,12 +95,11 @@ class QuestionModelTest(TestCase):
 
           
     def test_create_two_votes_and_retrieve_them_later(self):
-        first_vote = Vote()
-        first_vote.text = "the first vote"
-        first_vote.save()
-        second_vote = Vote()
-        second_vote.text = "the second vote"
-        second_vote.save()
+        question = Question()
+        question.text = 'the question'
+        question.save()
+        first_vote = Vote.objects.create(text="the first vote", question=question)
+        second_vote = Vote.objects.create(text="the second vote", question=question)
         self.assertEqual(2, Vote.objects.count())
         first_saved_vote = Vote.objects.all()[0]
         second_saved_vote = Vote.objects.all()[1]

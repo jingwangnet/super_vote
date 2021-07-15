@@ -19,15 +19,13 @@ def view_question(request, pk):
 
 def new_vote(request, pk):
     question = Question.objects.get(pk=pk)
-    Vote.objects.create(text=request.POST['new-vote'])
+    Vote.objects.create(text=request.POST['new-vote'], question=question)
     return redirect(f'/question/{question.pk}/result/')
 
 def view_vote(request,pk):
-    votes = Vote.objects.all()
     question = Question.objects.get(pk=pk)
     context = {
-        'new_question':  question.text,
-        'votes': votes
+        'question':  question
     }
     return render(request, 'vote/vote.html', context)
 
